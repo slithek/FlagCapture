@@ -1,9 +1,5 @@
 package flagcapture;
 
-
-
-import java.awt.Graphics2D;
-
 import java.util.ArrayList;
 
 import javafx.animation.AnimationTimer;
@@ -11,13 +7,9 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.scene.canvas.*;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
 
 public class AppRunner extends Application {
 
