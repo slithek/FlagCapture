@@ -15,6 +15,7 @@ public class AppRunner extends Application {
 
 	public static final int CANVAS_WIDTH = 1200;
 	public static final int CANVAS_HEIGHT = 720;
+	private ArrayList<String> input;
 	
 	private GameManager gameManager;
 	
@@ -45,39 +46,40 @@ public class AppRunner extends Application {
 			gameManager.setGraphicsContext(graphics);
 	
 	//ARRAY LIST FOR USER INPUT
-			ArrayList<String> input = new ArrayList<String>();
+			input = new ArrayList<String>();
 			
 	//EVENT LISTENERS
 		//KEY LISTENERS
-			baseScene.setOnKeyPressed(
-					new EventHandler<KeyEvent>() {
-						@Override
-						public void handle(KeyEvent e) {
-							String code = e.getCode().toString();
-							
-							if (!input.contains(code)) {
-								gameManager.startUser(code);
-								input.add(code);
-							}
-						}
-					}
-			);
 			
-			baseScene.setOnKeyReleased(
-					new EventHandler<KeyEvent>() {
-						@Override
-						public void handle(KeyEvent e) {
-							String code = e.getCode().toString();
-							
-							if (input.contains(code)) {
-								gameManager.stopUser(code);
-								input.remove(code);
-							}
-						}
-					}
-			);
+//vvv===This is old code I used before I understood :: syntax===vvv//
+//			baseScene.setOnKeyPressed(
+//					new EventHandler<KeyEvent>() {
+//						@Override
+//						public void handle(KeyEvent e) {
+//							String code = e.getCode().toString();
+//							
+//							if (!input.contains(code)) {
+//								gameManager.startUser(code);
+//								input.add(code);
+//							}
+//						}
+//					}
+//			);
+//			baseScene.setOnKeyPressed(
+//				e -> {	String code = e.getCode().toString();
+//							
+//						if (!input.contains(code)) {
+//							gameManager.startUser(code);
+//							input.add(code);
+//						}
+//					}
+//			);
+//^^^===This is old code I used before I understood :: syntax===^^^//
+			
+			baseScene.setOnKeyPressed(this::handleKeyPressed);
+			baseScene.setOnKeyReleased(this::handleKeyReleased);
 		
-	//================================MAIN GAME LOOP================================//
+//================================MAIN GAME LOOP================================//
 			new AnimationTimer() {
 				@Override
 				public void handle(long currentNanoTime) {
@@ -95,13 +97,30 @@ public class AppRunner extends Application {
 						if (displayArrows) {
 							gameManager.displayDirectionalArrows();
 						}
-						
-					
 				}
 			}.start();
+//================================END GAME LOOP================================//
 			
 		//DISPLAYS THE STAGE
 			primaryStage.show();
+	}
+	
+	private void handleKeyPressed(KeyEvent e) {
+		String code = e.getCode().toString();
+		
+		if (!input.contains(code)) {
+			gameManager.startUser(code);
+			input.add(code);
+		}
+	}
+	
+	private void handleKeyReleased(KeyEvent e) {
+		String code = e.getCode().toString();
+		
+		if (input.contains(code)) {
+			gameManager.stopUser(code);
+			input.remove(code);
+		}
 	}
 	
 
