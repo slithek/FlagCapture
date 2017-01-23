@@ -2,6 +2,7 @@ package flagcapture;
 
 import java.util.ArrayList;
 
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -30,6 +31,7 @@ public class AppRunner extends Application {
 		
 			gameManager = new GameManager(1);
 			displayArrows = true;
+			//Random comment
 		
 	//SETUP FOR STAGE, SCENE, AND CANVAS GRAPHICS
 			primaryStage.setTitle("FlagCapture v0.1.0");
@@ -76,8 +78,6 @@ public class AppRunner extends Application {
 //			);
 //^^^===This is old code I used before I understood :: syntax===^^^//
 			
-			baseScene.setOnKeyPressed(this::handleKeyPressed);
-			baseScene.setOnKeyReleased(this::handleKeyReleased);
 		
 //================================MAIN GAME LOOP================================//
 			new AnimationTimer() {
@@ -100,6 +100,9 @@ public class AppRunner extends Application {
 				}
 			}.start();
 //================================END GAME LOOP================================//
+			
+			baseScene.setOnKeyPressed(this::handleKeyPressed);
+			baseScene.setOnKeyReleased(this::handleKeyReleased);
 			
 		//DISPLAYS THE STAGE
 			primaryStage.show();
