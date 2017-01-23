@@ -31,7 +31,6 @@ public class AppRunner extends Application {
 		
 			gameManager = new GameManager(1);
 			displayArrows = true;
-			//Random comment
 		
 	//SETUP FOR STAGE, SCENE, AND CANVAS GRAPHICS
 			primaryStage.setTitle("FlagCapture v0.1.0");
